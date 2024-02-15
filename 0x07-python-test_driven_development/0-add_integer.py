@@ -1,21 +1,34 @@
 #!/usr/bin/python3
+"""Defines a function add_integer(a, b=98) that adds two integers.
+
+Attributes:
+    add_integer: function that adds two integers.
 """
-This is the "Add Integer"  module.
-
-This module supplies one function, add_integer(),
-which adds together 2 int or float types and returns an int.
-"""
 
 
-def add_integer(a, b):
-    """Return the sum of two integers or floats as an integer.
-    Otherwise raise a TypeError for given incorrect argument type.
+def add_integer(a, b=98):
+    """Adds two integer and/or float values.
+
+    Args:
+        a (int): First value
+        b (int, optional): Second value. Defaults to 98.
+
+    Raises:
+        TypeError: If a and b are not integers or floats.
+
+    Returns:
+        int: Sum of a and b.
     """
-    h = list(map(lambda x: isinstance(x, (int, float)), [a, b]))
+    if not isinstance(a, int) and not isinstance(a, float):
+        raise TypeError("a must be an integer")
 
-    if all(h):
-        return int(a) + int(b)
+    if not isinstance(b, int) and not isinstance(b, float):
+        raise TypeError("b must be an integer")
 
-    for x, y in list(zip(h, ['a', 'b'])):
-        if not x:
-            raise TypeError("{} must be an integer".format(y))
+    if isinstance(a, float):
+        a = int(a)
+
+    if isinstance(b, float):
+        b = int(b)
+
+    return a + b
